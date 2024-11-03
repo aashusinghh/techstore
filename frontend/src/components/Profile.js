@@ -4,6 +4,7 @@ import UserSideBar from "./user/UserSideBar";
 import { useParams } from "react-router-dom";
 import Orders from "./user/Orders";
 import UserProfile from "./user/UserProfile";
+import ChangePassword from "./user/ChangePassword";
 
 const Profile = () => {
   const { activeParams } = useParams();
@@ -18,6 +19,7 @@ const Profile = () => {
         <div className="right-box">
           {activeParams === "profile" && <UserProfile />}
           {activeParams === "order" && <Orders />}
+          {activeParams === "changepassword" && <ChangePassword />}
         </div>
       </div>
     </Wrapper>
@@ -65,7 +67,6 @@ const Wrapper = styled.section`
   }
   .col input {
     margin-top: 1rem;
-    padding: 11px 3px;
     border-radius: 9px;
   }
 `;

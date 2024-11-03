@@ -1,41 +1,29 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import { useUserContext } from "../../context/user_context";
-import { Button } from "../../styles/Button";
 import { Formik } from "formik";
+import React, { useState } from "react";
+import styled from "styled-components";
+import { Button } from "../../styles/Button";
+import { useUserContext } from "../../context/user_context";
 
-const UserProfile = () => {
-  const { userData, getUserData, updateUser } = useUserContext();
+const ChangePassword = () => {
   const [disable, setDisable] = useState(true);
 
-  useEffect(() => {
-    getUserData();
-  }, []);
-
-  // console.log(userData);
-
+  const { changeUserPassword } = useUserContext();
   return (
     <Wrapper>
-      {" "}
       <div className="heading">
-        {userData.profile_pic ? (
-          <img src={userData.profile_pic} alt="Avatar" />
-        ) : (
-          <img
-            src="https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png"
-            alt="Avatar"
-          />
-        )}
-
-        <h2>{userData?.fullname?.toUpperCase()} </h2>
+        <h2>Reset Password</h2>
       </div>
       <Formik
-        initialValues={{ ...userData }}
+        initialValues={{oldPassword: "",newPassword :"" }}
         enableReinitialize
         onSubmit={(values, { resetForm }) => {
+          console.log(values);
+          changeUserPassword(values);
+          resetForm();
+
           // console.log(values);
-          delete values.email;
-          updateUser(values);
+          // delete values.email;
+          // updateUser(values);
         }}
       >
         {({
@@ -51,49 +39,24 @@ const UserProfile = () => {
           <form className="signup-react-form" onSubmit={handleSubmit}>
             <div className="grid grid-two-column">
               <div className="col">
-                <label htmlFor="name"> Name</label>
+                <label htmlFor="name"> Old Password</label>
                 <input
-                  name="fullname"
+                  name="oldPassword"
                   type="text"
                   onChange={handleChange}
-                  value={values?.fullname}
+                  value={values?.oldPassword}
                   disabled={disable}
                 ></input>
               </div>
               <div className="col">
-                <label htmlFor="email"> Email </label>
+                <label htmlFor="email"> New Password </label>
                 <input
-                  name="email"
-                  type="email"
-                  value={values?.email}
-                  disabled
-                ></input>
-              </div>
-              <div className="col">
-                <label htmlFor="phNo"> Contact No </label>
-                <input
-                  name="contact"
+                  name="newPassword"
                   type="text"
-                  maxlength={10}
-                  minLength={10}
                   onChange={handleChange}
-                  value={values?.contact}
+                  value={values?.newPassword}
                   disabled={disable}
                 ></input>
-              </div>
-              <div className="col">
-                <label htmlFor="gender"> Gender</label>
-
-                <select
-                  name="gender"
-                  id="gender"
-                  onChange={handleChange}
-                  disabled={disable}
-                  value={values?.gender}
-                >
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
               </div>
             </div>
             <div className="form-footer">
@@ -106,7 +69,7 @@ const UserProfile = () => {
                   }}
                 >
                   {" "}
-                  Update{" "}
+                  Change Password{" "}
                 </Button>
               ) : (
                 <Button
@@ -117,7 +80,7 @@ const UserProfile = () => {
                   }}
                 >
                   {" "}
-                  Save Changes{" "}
+                  Save Password{" "}
                 </Button>
               )}
             </div>
@@ -128,7 +91,7 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default ChangePassword;
 
 const Wrapper = styled.section`
   font-size: 1.5rem;

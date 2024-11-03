@@ -11,7 +11,11 @@ const {
   saveNewUserData,
   saveUserAccessToken,
   findUserByUserId,
+  updateUser,
+  changePswdInDb,
+  confirmCurrPassword,
 } = require("../models/user.model");
+const { uploadSingleOnCloudinary } = require("../utils/Cloudinary");
 
 const addNewUser = async (req, res) => {
   const { email, password, fullname } = req.body;
@@ -130,7 +134,36 @@ const getUserDetails = async (req, res) => {
   });
 };
 
+const updateUserData = async (req, res) => {
+  const { body } = req;
 
+  console.log(req.files);
+
+  let localFilePath = req.files?.profile?.[0].path;
+
+  let userData = {};
+  if (localFilePath) {
+    const response = await uploadSingleOnCloudinary(localFilePath);
+
+    userData.profile_pic = response.secure_url;
+  }
+
+  for (let key in body) {
+    userData[key] = body[key];
+  }
+
+  const updated = await updateUser(userData, req.user.email);
+
+  if (!updated) {
+    res.status(500).json({
+      message: "Error in updating user",
+    });
+  }
+
+  res.status(200).json({
+    message: "User Updated",
+  });
+};
 
 const generate = async (req, res) => {
   let receiptHtmlPath = fs.readFileSync(
@@ -165,9 +198,46 @@ const generate = async (req, res) => {
   });
 };
 
+const changePassword = async (req, res) => {
+  const { newPassword, oldPassword } = req.body;
+
+  const { user_id } = req.user;
+
+  if (!newPassword || !oldPassword) {
+    return res.status(400).json({
+      message: "Old PassWord and New Password are required",
+    });
+  }
+
+  const passMatch = await confirmCurrPassword(user_id, oldPassword);
+  if (!passMatch) {
+    return res.status(400).json({
+      message: "Enter correct Current password",
+    });
+  }
+
+  if (oldPassword == newPassword) {
+    return res.status(400).json({
+      message: "Old Password and new Password can't be same",
+    });
+  }
+  const response = await changePswdInDb(user_id, newPassword);
+  if (!response) {
+    return res.status(500).json({
+      message: "Something went wrong",
+    });
+  }
+
+  res.status(200).json({
+    message: "Password changed Successfully",
+  });
+};
+
 module.exports = {
   addNewUser,
   getUserDetails,
   loginUser,
   generate,
+  updateUserData,
+  changePassword,
 };

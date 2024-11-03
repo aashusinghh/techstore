@@ -71,11 +71,30 @@ const UserProvider = ({ children }) => {
           Authorization: "Bearer " + token,
         },
       });
-      // console.log(res);
 
       dispatch({ type: "SET_USER", payload: res.data.user });
     } catch (error) {
       errorMsg("Error is getting User Data");
+      console.log(error);
+    }
+  };
+
+  const updateUser = async (payload) => {
+    let token = sessionStorage.getItem("token");
+    const toastId = loadingMsg("Updating User Data");
+
+    try {
+      const res = await axios.post(`${API}/users/update`, payload, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+
+      getUserData();
+
+      updateMsg("Updated User Data", toastId, "success");
+    } catch (error) {
+      updateMsg("Error in Updating User Data", toastId, "error");
       console.log(error);
     }
   };
@@ -99,7 +118,6 @@ const UserProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
       updateMsg("Something went wrong", toastId, "error");
-
     }
   };
 
@@ -146,6 +164,24 @@ const UserProvider = ({ children }) => {
       console.log(error);
     }
   };
+  const changeUserPassword = async (data) => {
+    let token = sessionStorage.getItem("token");
+
+    try {
+      const res = await axios.post(`${API}/users/changepassword`, data, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+
+      successMsg("Password changed");
+    } catch (error) {
+      console.log(error.response.data.message);
+
+      errorMsg(error.response.data.message);
+      console.log(error);
+    }
+  };
 
   return (
     <UserContext.Provider
@@ -157,6 +193,8 @@ const UserProvider = ({ children }) => {
         checkOutFn,
         getOrders,
         cancelOrder,
+        updateUser,
+        changeUserPassword,
       }}
     >
       {children}
