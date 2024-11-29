@@ -14,16 +14,12 @@ const ChangePassword = () => {
         <h2>Reset Password</h2>
       </div>
       <Formik
-        initialValues={{oldPassword: "",newPassword :"" }}
+        initialValues={{ oldPassword: "", newPassword: "" }}
         enableReinitialize
         onSubmit={(values, { resetForm }) => {
           console.log(values);
           changeUserPassword(values);
           resetForm();
-
-          // console.log(values);
-          // delete values.email;
-          // updateUser(values);
         }}
       >
         {({

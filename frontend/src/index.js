@@ -21,6 +21,7 @@ import Profile from "./components/Profile";
 import CheckOut from "./components/CheckOut";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AdminLayout from "./components/Admin/AdminLayout";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -66,6 +67,11 @@ root.render(
 
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
+
+              <Route
+                path="admin"
+                element={<Protected Component={AdminLayout} />}
+              />
             </Routes>
           </UserProvider>
         </CartProvider>

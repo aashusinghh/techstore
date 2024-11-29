@@ -20,7 +20,7 @@ const findUserData = async (email) => {
 };
 const findUserByUserId = async (user_id) => {
   let queryString =
-    "SELECT fullname, email, contact, profile_pic, gender from user WHERE user_id=(?)";
+    "SELECT fullname, email, contact, profile_pic, gender, role from user WHERE user_id=(?)";
 
   try {
     const [res] = await connection.query(queryString, [user_id]);

@@ -50,8 +50,10 @@ const UserProvider = ({ children }) => {
       const decodedUser = jwtDecode(res.data?.accessToken);
       sessionStorage.setItem("token", res.data?.accessToken);
       sessionStorage.setItem("user", JSON.stringify(decodedUser));
-
-      navigate("");
+      console.log(res.data);
+      
+      if(decodedUser?.role === "admin") navigate("/admin");
+      else navigate("");
 
       console.log(res);
     } catch (error) {
