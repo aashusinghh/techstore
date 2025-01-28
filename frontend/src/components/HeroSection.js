@@ -9,8 +9,8 @@ const HeroSection = ({ myData }) => {
     <Wrapper>
       <div className="container">
         <div className="grid grid-two-column">
-          <div className="hero-section-data">
-            <p className="intro-data">Welcome to </p>
+          <div className="hero-section-data mt-30">
+            <p className="intro-data text-black">Welcome to </p>
             <h1> {name} </h1>
             <p>
               Welcome to TechStore - your ultimate destination for all your

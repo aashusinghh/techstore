@@ -20,7 +20,7 @@ const Nav = () => {
 
   const logout = () => {
     sessionStorage.clear();
-    navigate("");
+    navigate("/");
     successMsg("User logged out");
   };
   return (

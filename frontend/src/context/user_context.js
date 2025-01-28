@@ -52,7 +52,7 @@ const UserProvider = ({ children }) => {
       sessionStorage.setItem("user", JSON.stringify(decodedUser));
       console.log(res.data);
       
-      if(decodedUser?.role === "admin") navigate("/admin");
+      if(decodedUser?.role === "admin") navigate("/admin/dashboard");
       else navigate("");
 
       console.log(res);

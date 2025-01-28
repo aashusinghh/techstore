@@ -3,10 +3,10 @@ import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgMenu, CgClose } from "react-icons/cg";
-import { useCartContext } from "../context/cart_context";
-import { Button } from "../styles/Button";
-import useLogin from "../hooks/useLogin";
-import { successMsg } from "../utils/ToastFunction";
+import { useCartContext } from "../../context/cart_context";
+import { Button } from "../../styles/Button";
+import useLogin from "../../hooks/useLogin";
+import { successMsg } from "../../utils/ToastFunction";
 
 const AdminNav = () => {
   const [menuIcon, setMenuIcon] = useState();
@@ -20,130 +20,102 @@ const AdminNav = () => {
 
   const logout = () => {
     sessionStorage.clear();
-    navigate("");
+    navigate("/");
     successMsg("User logged out");
   };
   return (
     <Wrapper>
-      <div className={menuIcon ? "navbar active" : "navbar"}>
-        <ul className="navbar-lists">
-          <li>
-            <NavLink
-              to="/"
-              className="navbar-link "
-              onClick={() => setMenuIcon(false)}
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/about"
-              className="navbar-link "
-              onClick={() => setMenuIcon(false)}
-            >
-              About
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/products"
-              className="navbar-link "
-              onClick={() => setMenuIcon(false)}
-            >
-              Products
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/contact"
-              className="navbar-link "
-              onClick={() => setMenuIcon(false)}
-            >
-              Contact
-            </NavLink>
-          </li>
-
-          {isAuthenticated && (
+      <MainHeader>
+        <div className={menuIcon ? "navbar active" : "navbar"}>
+          <ul className="navbar-lists">
             <li>
-              <NavLink to="/user/profile" className="navbar-link ">
-                <Button
-                  className="button"
-                  style={{
-                    backgroundColor: "rgb(37, 39, 77)",
-                    color: "white",
-                  }}
-                >
-                  {user.fullname}
-                </Button>
-              </NavLink>
-            </li>
-          )}
-
-          {isAuthenticated ? (
-            <li>
-              <Button
-                className="button"
-                style={{
-                  backgroundColor: "white",
-                  color: "black",
-                }}
-                onClick={() => logout()}
+              <NavLink
+                // to="/"
+                className="navbar-link "
+                onClick={() => setMenuIcon(false)}
               >
-                Log Out
-              </Button>
-            </li>
-          ) : (
-            <li>
-              <NavLink to="/login">
-                <Button
-                  className="button"
-                  style={{
-                    backgroundColor: "rgb(37, 39, 77)",
-                    color: "white",
-                  }}
-                  onClick={() => loginWithRedirect()}
-                >
-                  Log In
-                </Button>
+                DashBoard
               </NavLink>
-              <NavLink to="/signup">
+            </li>
+            <li>
+              <NavLink
+                to="/admin/products"
+                className="navbar-link "
+                onClick={() => setMenuIcon(false)}
+              >
+                Products
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="admin/customer"
+                className="navbar-link "
+                onClick={() => setMenuIcon(false)}
+              >
+                Customer
+              </NavLink>
+            </li>
+
+            {isAuthenticated && (
+              <li>
+                <NavLink to="/user/profile" className="navbar-link ">
+                  <Button
+                    className="button"
+                    style={{
+                      backgroundColor: "rgb(37, 39, 77)",
+                      color: "white",
+                    }}
+                  >
+                    {user.fullname}
+                  </Button>
+                </NavLink>
+              </li>
+            )}
+
+            {isAuthenticated ? (
+              <li>
                 <Button
                   className="button"
                   style={{
                     backgroundColor: "white",
                     color: "black",
                   }}
-                  onClick={() => loginWithRedirect()}
+                  onClick={() => logout()}
                 >
-                  Sign UP
+                  Log Out
                 </Button>
-              </NavLink>
-            </li>
-          )}
-
-          <li>
-            <NavLink to="/cart" className="navbar-link cart-trolley--link">
-              <FiShoppingCart className="cart-trolley" />
-              <span className="cart-total--item"> {total_item} </span>
-            </NavLink>
-          </li>
-        </ul>
-
-        {/* two button for open and close of menu */}
-        <div className="mobile-navbar-btn">
-          <CgMenu
-            name="menu-outline"
-            className="mobile-nav-icon"
-            onClick={() => setMenuIcon(true)}
-          />
-          <CgClose
-            name="close-outline"
-            className="mobile-nav-icon close-outline"
-            onClick={() => setMenuIcon(false)}
-          />
+              </li>
+            ) : (
+              <li>
+                <NavLink to="/login">
+                  <Button
+                    className="button"
+                    style={{
+                      backgroundColor: "rgb(37, 39, 77)",
+                      color: "white",
+                    }}
+                    onClick={() => loginWithRedirect()}
+                  >
+                    Log In
+                  </Button>
+                </NavLink>
+                <NavLink to="/signup">
+                  <Button
+                    className="button"
+                    style={{
+                      backgroundColor: "white",
+                      color: "black",
+                    }}
+                    onClick={() => loginWithRedirect()}
+                  >
+                    Sign UP
+                  </Button>
+                </NavLink>
+              </li>
+            )}
+          </ul>
         </div>
-      </div>
+      </MainHeader>
     </Wrapper>
   );
 };
@@ -307,6 +279,35 @@ const Wrapper = styled.nav`
       font-size: 2.2rem;
       padding: 0.8rem 1.4rem;
     }
+  }
+`;
+
+const MainHeader = styled.header`
+  padding: 0 4.8rem;
+  height: 8rem;
+  background-color: #25274d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  width: 100%;
+  position: fixed;
+  z-index: 3;
+
+  .logo {
+    height: 5rem;
+  }
+
+  .header-title {
+    width: 70%;
+    height: 5rem;
+    font-size: 3rem;
+  }
+  h2 {
+    color: #fff;
+  }
+  .header-logo {
+    width: 30%;
   }
 `;
 export default AdminNav;

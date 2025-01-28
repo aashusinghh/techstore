@@ -1,46 +1,23 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
 import Nav from "./Nav";
-import { MdStoreMallDirectory} from "react-icons/md"
+import { MdStoreMallDirectory } from "react-icons/md";
 const Header = () => {
   return (
-    <MainHeader>
+    <navbar className="p-5 bg-slate-600 flex items-center w-full h-25 justify-evenly fixed z-30">
       <NavLink to="/">
-        {/* <img src="./images/logo.png" alt="my logo img" /> */}
-        <h2>Tech Store <MdStoreMallDirectory /></h2>
+        <div className="flex ">
+          <h2 className="text-white ">Tech Store</h2>
+          <h2 className="text-white ">
+            <MdStoreMallDirectory />
+          </h2>
+        </div>
       </NavLink>
       <Nav />
-    </MainHeader>
+    </navbar>
   );
 };
+// background-color: #25274d;
+// color: #fff;
 
-const MainHeader = styled.header`
-  padding: 0 4.8rem;
-  height: 8rem;
-  background-color: #25274D;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #fff;
-  width: 100%;
-  position: fixed;
-  z-index: 3;
-
-  .logo {
-    height: 5rem;
-  }
-
-  .header-title{
-    width: 70%;
-    height: 5rem;
-    font-size:3rem
-  }
-   h2{
-    color : #fff;
-   }
-  .header-logo{
-    width : 30%
-  }
-`;
 export default Header;

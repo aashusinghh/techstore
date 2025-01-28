@@ -5,7 +5,6 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { Button } from "../../styles/Button";
 import Inventory2TwoToneIcon from "@mui/icons-material/Inventory2TwoTone";
-import OrderDetails from "./OrderDetails";
 import DownloadIcon from "@mui/icons-material/Download";
 
 const Orders = () => {
@@ -41,7 +40,6 @@ const Orders = () => {
         </thead>
         <tbody>
           {userOrder.map((order) => (
-
             <tr key={order.order_id}>
               <td width="20%">{order.order_id}</td>
               <td width="30%">
@@ -80,7 +78,7 @@ const Orders = () => {
                   // style={{ backgroundColor: "red" }}
                   onClick={() => {
                     // cancelOrder(order.order_id);
-                    window.open(order.receipt_link, '_blank');
+                    window.open(order.receipt_link, "_blank");
                   }}
                 >
                   <DownloadIcon fontSize="large" />
