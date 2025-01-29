@@ -94,9 +94,9 @@ ${"" /* resuable code section  */}
   margin: 0 auto;
 }
 
-.grid {
-  display: grid;
-}
+// .grid {
+//   // display: grid;
+// }
 
 .grid-two-column {
   grid-template-columns: repeat(2, 1fr);

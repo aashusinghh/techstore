@@ -2,7 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-
+@theme {
+  --color-midnight: rgb(37, 39, 77);
+  --color-tahiti: #3ab7bf;
+  --color-bermuda: #78dcca;
+}
 /* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
