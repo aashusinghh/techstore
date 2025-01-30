@@ -26,7 +26,7 @@ const Nav = () => {
   return (
     <Wrapper>
       <div className={menuIcon ? "navbar active" : "navbar"}>
-        <ul className="navbar-lists">
+        <ul className="navbar-lists flex gap-20 items-center">
           <li>
             <NavLink
               to="/"
@@ -131,7 +131,15 @@ const Nav = () => {
         </ul>
 
         {/* two button for open and close of menu */}
-        <div className="mobile-navbar-btn">
+
+        
+  {/* .mobile-navbar-btn {
+
+    background-color: transparent;
+   
+    border: none;
+  } */}
+        <div className=" hidden cursor-pointer ">
           <CgMenu
             name="menu-outline"
             className="mobile-nav-icon"
@@ -149,16 +157,11 @@ const Nav = () => {
 };
 
 const Wrapper = styled.nav`
-  .button {
-    border-radius: 1.2rem;
-  }
+ 
   .navbar-lists > li > a {
     margin: 0 5px;
   }
   .navbar-lists {
-    display: flex;
-    gap: 4.8rem;
-    align-items: center;
 
     .navbar-link {
       &:link,
@@ -179,12 +182,6 @@ const Wrapper = styled.nav`
     }
   }
 
-  .mobile-navbar-btn {
-    display: none;
-    background-color: transparent;
-    cursor: pointer;
-    border: none;
-  }
 
   .mobile-nav-icon[name="close-outline"] {
     display: none;
