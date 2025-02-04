@@ -23,6 +23,12 @@ module.exports = {
         shadowSupport: " rgba(0, 0, 0, 0.16) 0px 1px 4px",
         light_bg: "#ddddddb8",
         label: "#464646",
+        about_bg: "#25274d",
+        para_color: "#fff",
+        fig_after: "#rgba(0, 0, 0, 0.5)",
+        service: "#aaabb8",
+        icon_c: "#5138ee",
+        rm_icon: "#e74c3c",
       },
       media: {
         mobile: "768px",

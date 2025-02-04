@@ -6,69 +6,62 @@ import { RiSecurePaymentLine } from "react-icons/ri";
 
 const Services = () => {
   return (
-    <Wrapper>
-      <div className="container">
-        <div className="grid grid-three-column">
-          <div className="services-1">
+    <div className="py-36 px-0 bg-about_bg">
+      <div className="max-w-[120rem] my-0 mx-auto">
+        <div className="grid grid-cols-3 gap-8">
+          <div className=" w-auto h-[30rem] flex flex-col justify-center items-center bg-service rounded-3xl">
             <div>
-              <TbTruckDelivery className="icon" />
-              <h3>Super Fast and Free Delivery</h3>
+              <TbTruckDelivery className="icon w-32 h-32 p-8 bg-para_color text-icon_c rounded-[50%]" />
+              <h3 className="mt-6 text-3xl text-white">
+                Super Fast and Free Delivery
+              </h3>
             </div>
           </div>
 
-          <div className="services-2">
+          <div className=" w-auto h-[30rem] flex flex-col justify-center items-center bg-service rounded-3xl">
             <div className="services-colum-2">
               <div>
-                <MdSecurity className="icon" />
-                <h3>Non-contact Shipping</h3>
+                <MdSecurity className="icon w-32 h-32 p-8 bg-para_color text-icon_c rounded-[50%]" />
+                <h3 className="mt-6 text-3xl text-white">
+                  Non-contact Shipping
+                </h3>
               </div>
             </div>
-            <div className="services-colum-2">
+            <div className=" w-auto h-[30rem] flex flex-col justify-center items-center bg-service rounded-3xl">
               <div>
-                <GiReceiveMoney className="icon" />
-                <h3>Money-back Guaranteed</h3>
+                <GiReceiveMoney className="icon w-32 h-32 p-8 bg-para_color text-icon_c rounded-[50%]" />
+                <h3 className="mt-6 text-3xl text-white">
+                  Money-back Guaranteed
+                </h3>
               </div>
             </div>
           </div>
 
-          <div className="services-3">
+          <div className=" w-auto h-[30rem] flex flex-col justify-center items-center bg-service rounded-3xl">
             <div>
-              <RiSecurePaymentLine className="icon" />
-              <h3>Super Secure Payment System</h3>
+              <RiSecurePaymentLine className="icon w-32 h-32 p-8 bg-para_color text-icon_c rounded-[50%] " />
+              <h3 className="mt-6 text-3xl text-white">
+                Super Secure Payment System
+              </h3>
             </div>
           </div>
         </div>
       </div>
-    </Wrapper>
+    </div>
   );
 };
 
 const Wrapper = styled.section`
-  padding: 9rem 0;
-  background: #222930;
-  background: #D05A00;
-  background: #25274D;
-  // background: #464866;
 
-  .grid {
-    gap: 4.8rem;
-  }
 
   .services-1,
   .services-2,
   .services-3 {
-    width: auto;
-    height: 30rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+ 
     align-content: center;
-    // background: ${({ theme }) => theme.colors.bg};
-    // background: ${({ theme }) => theme.colors.bg};
-    // background: #0B4141;
-    background: #AAABB8;
+
     text-align: center;
-    border-radius: 2rem;
+    // border-radius: 2rem;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
   }
 
@@ -78,42 +71,9 @@ const Wrapper = styled.section`
     // background-color: #0B4141;
     box-shadow: none;
 
-    .services-colum-2 {
-      // background: ${({ theme }) => theme.colors.bg};
-      background: #0B4141;
-      background: #AAABB8;
-      display: flex;
-      flex-direction: row;
-      flex: 1;
-      justify-content: center;
-      align-items: center;
-      border-radius: 2rem;
-      box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
-
-      div {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-      }
+    
     }
   }
 
-  h3 {
-    margin-top: 1.4rem;
-    font-size: 2rem;
-    color: white;
-  }
-
-  .icon {
-    /* font-size: rem; */
-    width: 8rem;
-    height: 8rem;
-    padding: 2rem;
-    border-radius: 50%;
-    background-color: #fff;
-    color: #5138ee;
-  }
 `;
 export default Services;

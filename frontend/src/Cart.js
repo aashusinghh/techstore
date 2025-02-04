@@ -28,12 +28,18 @@ const Cart = () => {
   };
 
   return (
-    <Wrapper>
-      <div className="container">
+    <div className="pt-64 ">
+      <div className="max-w-[120rem] my-0 mx-auto">
         {isAuthenticated && (
-          <div className="cart-user--profile">
-            <img src="/download.png" alt={user?.fullname} />
-            <h2 className="cart-user--name">{user.fullname}</h2>
+          <div className="cart-user--profile flex justify-start items-center gap-5 mb-22">
+            <img
+              className="w-32 h-32 rounded-[50%]"
+              src="/download.png"
+              alt={user?.fullname}
+            />
+            <h2 className="cart-user--name text-4xl capitalize ">
+              {user.fullname}
+            </h2>
           </div>
         )}
 
@@ -45,37 +51,37 @@ const Cart = () => {
           <p>Remove</p>
         </div>
         <hr />
-        <div className="cart-item">
+
+        <div className="cart-item py-13 px-0 flex flex-col gap-13">
           {cart.map((curElem) => {
             return <CartItem key={curElem.id} {...curElem} />;
           })}
         </div>
         <hr />
-        <div className="cart-two-button">
+
+        <div className="cart-two-button mt-8 flex justify-between ">
           <NavLink to="/products">
-            <Button style={{ backgroundColor: "#25274D", color: "#fff" }}>
-              {" "}
-              continue Shopping{" "}
-            </Button>
+            <Button className=""> continue Shopping </Button>
           </NavLink>
 
           {/* <NavLink to="/checkout"> */}
-            <Button
-              style={{ backgroundColor: "#25274D", color: "#fff" }}
-              onClick={handleCheckout}
-            >
-              {" "}
-              Buy Now
-            </Button>
+          <Button
+            className="text-para_color bg-about_bg"
+            onClick={handleCheckout}
+          >
+            {" "}
+            Buy Now
+          </Button>
           {/* </NavLink> */}
-          <Button className="btn btn-clear" onClick={clearCart}>
+          <Button className=" btn-clear bg-rm_icon" onClick={clearCart}>
             clear cart
           </Button>
         </div>
 
         {/* order total_amount */}
-        <div className="order-total--amount">
-          <div className="order-total--subdata">
+
+        <div className="order-total--amount w-[100%] my-20 mx-0 capitalize flex flex-col justify-end items-end ">
+          <div className="order-total--subdata flex gap-12 justify-between ">
             <div>
               <p>subtotal:</p>
               <p>
@@ -98,7 +104,7 @@ const Cart = () => {
           </div>
         </div>
       </div>
-    </Wrapper>
+    </div>
   );
 };
 
@@ -142,25 +148,25 @@ const Wrapper = styled.section`
     gap: 3.2rem;
   }
 
-  .cart-user--profile {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 1.2rem;
-    margin-bottom: 5.4rem;
+  // .cart-user--profile {
+  //   display: flex;
+  //   justify-content: flex-start;
+  //   align-items: center;
+  //   gap: 1.2rem;
+  //   margin-bottom: 5.4rem;
 
-    img {
-      width: 8rem;
-      height: 8rem;
-      border-radius: 50%;
-    }
-    h2 {
-      font-size: 2.4rem;
-    }
-  }
-  .cart-user--name {
-    text-transform: capitalize;
-  }
+  //   img {
+  //     width: 8rem;
+  //     height: 8rem;
+  //     border-radius: 50%;
+  //   }
+  //   h2 {
+  //     font-size: 2.4rem;
+  //   }
+  // }
+  // .cart-user--name {
+  //   text-transform: capitalize;
+  // }
   .cart-image--name {
     /* background-color: red; */
     align-items: center;
