@@ -115,9 +115,7 @@ const Product = ({ uniqueNo, ...curElem }) => {
         >
           <img
             className="max-w-[90%] mt-5 h-80"
-            src={
-              "https://images.pexels.com/photos/14328581/pexels-photo-14328581.jpeg"
-            }
+            src={image}
             alt={name}
             height={"100%"}
             width={"100%"}

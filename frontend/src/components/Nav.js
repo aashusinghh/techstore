@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgMenu, CgClose } from "react-icons/cg";
 import { useCartContext } from "../context/cart_context";
@@ -24,13 +23,17 @@ const Nav = () => {
     successMsg("User logged out");
   };
   return (
-    <Wrapper>
+    <div className="">
       <div className={menuIcon ? "navbar active" : "navbar"}>
-        <ul className="navbar-lists flex gap-20 items-center">
+
+    
+        <ul className=" flex gap-20 items-center">
           <li>
+
+    
             <NavLink
               to="/"
-              className="navbar-link "
+              className=" inline-block text-3xl font-medium uppercase text-white  duration-300 ease-linear hover:text-helper"
               onClick={() => setMenuIcon(false)}
             >
               Home
@@ -39,7 +42,7 @@ const Nav = () => {
           <li>
             <NavLink
               to="/about"
-              className="navbar-link "
+              className=" inline-block text-3xl font-medium uppercase text-white  duration-300 ease-linear hover:text-helper"
               onClick={() => setMenuIcon(false)}
             >
               About
@@ -48,7 +51,7 @@ const Nav = () => {
           <li>
             <NavLink
               to="/products"
-              className="navbar-link "
+              className=" inline-block text-3xl font-medium uppercase text-white  duration-300 ease-linear hover:text-helper"
               onClick={() => setMenuIcon(false)}
             >
               Products
@@ -57,7 +60,7 @@ const Nav = () => {
           <li>
             <NavLink
               to="/contact"
-              className="navbar-link "
+              className=" inline-block text-3xl font-medium uppercase text-white  duration-300 ease-linear hover:text-helper"
               onClick={() => setMenuIcon(false)}
             >
               Contact
@@ -66,12 +69,13 @@ const Nav = () => {
 
           {isAuthenticated && (
             <li>
-              <NavLink to="/user/profile" className="navbar-link ">
+              <NavLink to="/user/profile" className=" inline-block text-3xl font-medium uppercase text-white  duration-300 ease-linear
+              hover:text-helper">
                 <Button
-                  className="button"
+                  className="button text-white"
                   style={{
                     backgroundColor: "rgb(37, 39, 77)",
-                    color: "white",
+                    // color: "white",
                   }}
                 >
                   {user.fullname}
@@ -97,7 +101,7 @@ const Nav = () => {
             <li>
               <NavLink to="/login">
                 <Button
-                  className="button"
+                  className="button text-white"
                   style={{
                     backgroundColor: "rgb(37, 39, 77)",
                     color: "white",
@@ -123,187 +127,37 @@ const Nav = () => {
           )}
 
           <li>
-            <NavLink to="/cart" className="navbar-link cart-trolley--link">
-              <FiShoppingCart className="cart-trolley" />
-              <span className="cart-total--item"> {total_item} </span>
+            <NavLink to="/cart" className="  relative inline-block text-3xl font-medium uppercase text-white  duration-300 ease-linear hover:text-helper">
+              <FiShoppingCart className=" relative text-[3.2rem]" />
+
+       
+              <span className=" w-[2.4rem] h-[2.4rem] absolute top-[-20%] left-[70%]  text-white 
+              rounded-[50%] grid place-items-center bg-helper
+              "> {total_item} </span>
             </NavLink>
           </li>
         </ul>
 
         {/* two button for open and close of menu */}
 
-        
-  {/* .mobile-navbar-btn {
-
-    background-color: transparent;
-   
-    border: none;
-  } */}
-        <div className=" hidden cursor-pointer ">
+  
+        <div className=" cursor-pointer hidden border-none  z-[9999]">
           <CgMenu
             name="menu-outline"
-            className="mobile-nav-icon"
+            className=" text-7xl "
             onClick={() => setMenuIcon(true)}
           />
           <CgClose
             name="close-outline"
-            className="mobile-nav-icon close-outline"
+            className="   hidden"
             onClick={() => setMenuIcon(false)}
           />
         </div>
       </div>
-    </Wrapper>
+    </div>
   );
 };
 
-const Wrapper = styled.nav`
- 
-  .navbar-lists > li > a {
-    margin: 0 5px;
-  }
-  .navbar-lists {
-
-    .navbar-link {
-      &:link,
-      &:visited {
-        display: inline-block;
-        text-decoration: none;
-        font-size: 1.8rem;
-        font-weight: 500;
-        text-transform: uppercase;
-        color: white;
-        transition: color 0.3s linear;
-      }
-
-      &:hover,
-      &:active {
-        color: ${({ theme }) => theme.colors.helper};
-      }
-    }
-  }
 
 
-  .mobile-nav-icon[name="close-outline"] {
-    display: none;
-  }
-
-  .close-outline {
-    display: none;
-  }
-
-  .cart-trolley--link {
-    position: relative;
-
-    .cart-trolley {
-      position: relative;
-      font-size: 3.2rem;
-    }
-
-    .cart-total--item {
-      width: 2.4rem;
-      height: 2.4rem;
-      position: absolute;
-      background-color: #000;
-      color: white;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      top: -20%;
-      left: 70%;
-      background-color: ${({ theme }) => theme.colors.helper};
-    }
-  }
-
-  .user-login--name {
-    text-transform: capitalize;
-  }
-
-  .user-logout,
-  .user-login {
-    font-size: 1.4rem;
-    padding: 0.8rem 1.4rem;
-  }
-
-  @media (max-width: ${({ theme }) => theme.media.mobile}) {
-    .mobile-navbar-btn {
-      display: inline-block;
-      z-index: 9999;
-      border: ${({ theme }) => theme.colors.black};
-
-      .mobile-nav-icon {
-        font-size: 4.2rem;
-        color: ${({ theme }) => theme.colors.black};
-      }
-    }
-
-    .active .mobile-nav-icon {
-      display: none;
-      font-size: 4.2rem;
-      position: absolute;
-      top: 30%;
-      right: 10%;
-      color: ${({ theme }) => theme.colors.black};
-      z-index: 9999;
-    }
-
-    .active .close-outline {
-      display: inline-block;
-    }
-
-    .navbar-lists {
-      width: 100vw;
-      height: 100vh;
-      position: absolute;
-      top: 0;
-      left: 0;
-      color: #fff;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-
-      visibility: hidden;
-      opacity: 0;
-      transform: translateX(100%);
-      /* transform-origin: top; */
-      transition: all 3s linear;
-    }
-
-    .active .navbar-lists {
-      visibility: visible;
-      opacity: 1;
-      transform: translateX(0);
-      z-index: 999;
-      transform-origin: right;
-      transition: all 3s linear;
-
-      .navbar-link {
-        font-size: 8.2rem;
-        color: #white;
-      }
-    }
-    .cart-trolley--link {
-      position: relative;
-
-      .cart-trolley {
-        position: relative;
-        font-size: 5.2rem;
-      }
-
-      .cart-total--item {
-        width: 4.2rem;
-        height: 4.2rem;
-        font-size: 2rem;
-        color: white;
-      }
-    }
-
-    .user-logout,
-    .user-login {
-      font-size: 2.2rem;
-      padding: 0.8rem 1.4rem;
-    }
-  }
-`;
 export default Nav;

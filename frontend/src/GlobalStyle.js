@@ -147,11 +147,11 @@ input, textarea, select{
    box-shadow: ${({ theme }) => theme.colors.shadowSupport};
 }
     input[type="submit"]{
-    max-width: 16rem;
-    margin-top: 2rem;
+    // max-width: 16rem;
+    // margin-top: 2rem;
     background-color: ${({ theme }) => theme.colors.btn};
     color: ${({ theme }) => theme.colors.white};
-    padding: 1.4rem 2.2rem;
+    // padding: 1.4rem 2.2rem;
     border-style: solid;
     border-width: .1rem;
      border-radius: 0.75rem;

@@ -29,6 +29,10 @@ module.exports = {
         service: "#aaabb8",
         icon_c: "#5138ee",
         rm_icon: "#e74c3c",
+        zero:"#000",
+        dark:"rgb(37, 39, 77)",
+        bd_color: "#f0f0f0",
+        fafa :"#fafafa"
       },
       media: {
         mobile: "768px",

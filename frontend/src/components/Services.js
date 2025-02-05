@@ -19,7 +19,7 @@ const Services = () => {
           </div>
 
           <div className=" w-auto h-[30rem] flex flex-col justify-center items-center bg-service rounded-3xl">
-            <div className="services-colum-2">
+            <div className=" w-auto h-[30rem] flex flex-col justify-center items-center bg-service rounded-3xl">
               <div>
                 <MdSecurity className="icon w-32 h-32 p-8 bg-para_color text-icon_c rounded-[50%]" />
                 <h3 className="mt-6 text-3xl text-white">

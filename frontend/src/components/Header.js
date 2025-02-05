@@ -4,7 +4,7 @@ import Nav from "./Nav";
 import { MdStoreMallDirectory } from "react-icons/md";
 const Header = () => {
   return (
-    <navbar className="p-5 bg-slate-600 flex items-center w-full h-25 justify-evenly fixed z-30">
+    <navbar className="p-5 bg-about_bg flex items-center w-full h-25 justify-evenly fixed z-30">
       <NavLink to="/">
         <div className="flex ">
           <h2 className="text-white ">Tech Store</h2>

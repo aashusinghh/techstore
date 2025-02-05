@@ -7,7 +7,7 @@ const Trusted = () => {
         <h3 className="text-center capitalize text-text text-4xl font-bold">
           Trusted By 1000+ Companies
         </h3>
-        <div className="brand-section-slider mt-13 flex justify-center items-center flex-row">
+        <div className=" mt-13 flex justify-between items-center flex-row ">
 
        
           {/* my 1st img  */}
