@@ -12,11 +12,11 @@ const Profile = () => {
 
   return (
     <Wrapper>
-      <div className="main-container">
+      <div className="main-container ">
         <div className="left-box">
           <UserSideBar />
         </div>
-        <div className="right-box">
+        <div className="right-box ">
           {activeParams === "profile" && <UserProfile />}
           {activeParams === "order" && <Orders />}
           {activeParams === "changepassword" && <ChangePassword />}
@@ -31,9 +31,12 @@ const Wrapper = styled.section`
 
   .main-container {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
+    overflow: hidden;
     align-items: center;
     justify-content: center;
+    background-color: rgb(246, 248, 250);
 
     gap: 6rem;
   }
@@ -41,12 +44,13 @@ const Wrapper = styled.section`
   .left-box {
     height: 55rem;
     width: 18%;
-
-    background-color: rgb(246, 248, 250);
+    // flex: 1;
+    // background-color: white;
   }
   .right-box {
     height: 55rem;
     width: 60%;
+    // flex: 1;
     background-color: rgb(246, 248, 250);
   }
 

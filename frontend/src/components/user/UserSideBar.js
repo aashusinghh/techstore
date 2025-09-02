@@ -56,6 +56,7 @@ const Wrapper = styled.section`
   color: black;
   cursor: pointer;
   border-radius: 0.75rem;
+  background-color: white;
 
   .tabs {
     padding: 2rem 2rem;

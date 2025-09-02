@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
-import styled from "styled-components";
 import { useUserContext } from "../../context/user_context";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { Button } from "../../styles/Button";
 import Inventory2TwoToneIcon from "@mui/icons-material/Inventory2TwoTone";
 import DownloadIcon from "@mui/icons-material/Download";
 
@@ -17,128 +15,98 @@ const Orders = () => {
 
   if (userOrder.length === 0) {
     return (
-      <Wrapper>
-        <div className="noOrder">
-          <Inventory2TwoToneIcon />
-          <h2>No Orders to show</h2>;
-        </div>
-      </Wrapper>
+      <div className="noOrder flex flex-col justify-center items-center">
+        <Inventory2TwoToneIcon style={{ fontSize: "8rem" }} />
+        <h2>No Orders to show</h2>;
+      </div>
     );
   }
 
   return (
-    <Wrapper>
-      <table>
-        <thead>
-          <tr>
-            <th width="20%">Order No.</th>
-            <th width="30%">Order Date </th>
-            <th width="30%">Price </th>
-            <th width="10%">Status </th>
-            <th width="15%">Action </th>
+    <div className="mt-8 py-8 px-20">
+      <table className="w-[54vw] border-[1px] rounded-lg border-solid border-[#8c8c8c] border-separate">
+        <thead className="text-[1.7rem]">
+          <tr className="bg-white border-b-2 h-[6rem]">
+            <th width="15%" className="border-x-0">
+              Order No.
+            </th>
+            <th width="25%" className="border-x-0">
+              Order Date
+            </th>
+            <th width="20%" className="border-x-0">
+              Price
+            </th>
+            <th width="10%" className="border-x-0">
+              Status
+            </th>
+            <th width="30%" className="border-x-0">
+              Action
+            </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="text-[1.3rem]">
           {userOrder.map((order) => (
-            <tr key={order.order_id}>
-              <td width="20%">{order.order_id}</td>
-              <td width="30%">
+            <tr
+              key={order.order_id}
+              className="h-[6rem] border-b-2 bg-white hover:cursor-pointer"
+            >
+              <td width="15%" className="text-center border-x-0">
+                {order.order_id}
+              </td>
+              <td width="25%" className="text-center border-x-0">
                 {new Date(order.date).toLocaleDateString("en-In", {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
                 })}
               </td>
-              <td width="30%">Rs {order.price} </td>
-              <td width="10%">{order.status} </td>
-              <td className="action-btns">
-                {" "}
-                <Button
-                  title="View"
-                  className="btn-sm"
-                  style={{ backgroundColor: "green" }}
-                >
-                  <RemoveRedEyeIcon fontSize="large" />{" "}
-                </Button>
+              <td width="20%" className="text-center border-x-0">
+                Rs {order.price}
+              </td>
+              <td width="10%" className="text-center border-x-0">
+                {order.status}
+              </td>
+              <td
+                className="action-btns h-[6rem] flex flex-row justify-center items-center gap-5 border-x-0"
+                style={{ borderBottomLeftRadius: "100px" }}
+              >
+                <div className="">
+                  <RemoveRedEyeIcon
+                    className="text-green-700"
+                    style={{ fontSize: "3.3rem" }}
+                  />
+                </div>
                 {order.status !== "CANCELLED" ? (
-                  <Button
-                    title="Cancel"
-                    className="btn-sm"
-                    style={{ backgroundColor: "red" }}
+                  <div className="">
+                    <CancelIcon
+                      className="text-red-700"
+                      style={{ fontSize: "3rem" }}
+                      onClick={() => {
+                        cancelOrder(order.order_id);
+                      }}
+                    />
+                  </div>
+                ) : (
+                  <div className=""></div>
+                )}
+                <div className="">
+                  <DownloadIcon
+                    className="text-yellow-400"
+                    style={{ fontSize: "3rem" }}
                     onClick={() => {
-                      cancelOrder(order.order_id);
+                      // cancelOrder(order.order_id);
+                      window.open(order.receipt_link, "_blank");
                     }}
-                  >
-                    <CancelIcon fontSize="large" />
-                  </Button>
-                ) : null}
-                <Button
-                  title="Download Reciept"
-                  className="btn-sm"
-                  // style={{ backgroundColor: "red" }}
-                  onClick={() => {
-                    // cancelOrder(order.order_id);
-                    window.open(order.receipt_link, "_blank");
-                  }}
-                >
-                  <DownloadIcon fontSize="large" />
-                </Button>
+                  />
+                </div>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-    </Wrapper>
+    </div>
   );
 };
 
 export default Orders;
 
-const Wrapper = styled.section`
-  margin-top: 2rem;
-  padding: 2rem 5rem;
-  font-size: 1.7rem;
-
-  .noOrder {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .noOrder svg {
-    font-size: 28rem;
-  }
-
-  table {
-    border-collapse: collapse;
-    letter-spacing: 0.13rem;
-    border: 2px solid rgb(140 140 140);
-  }
-  table tr:nth-child(even) {
-    background: #dbdbdb61;
-  }
-  table tr:nth-child(odd) {
-    background: white;
-  }
-  table tr:hover {
-    // background-color: #ddd;
-    cursor: pointer;
-  }
-
-  th,
-  td {
-    border: 1px solid rgb(160 160 160);
-    padding: 8px 10px;
-    text-align: center;
-  }
-  .action-btns {
-    display: flex;
-  }
-
-  .btn-sm {
-    padding: 0.3rem 1rem;
-    margin: 0rem 0.5rem;
-    padding-bottom: 0;
-  }
-`;

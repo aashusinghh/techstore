@@ -15,15 +15,19 @@ const UserProfile = () => {
   // console.log(userData);
 
   return (
-    <Wrapper>
-      {" "}
-      <div className="heading">
+    <div className="">
+      <div className="heading py-8 px-28 flex flex-row items-center gap-12 ">
         {userData.profile_pic ? (
-          <img src={userData.profile_pic} alt="Avatar" />
+          <img
+            src={userData.profile_pic}
+            alt="Avatar"
+            className="border-[50%] h-60 w-60 cursor-pointer"
+          />
         ) : (
           <img
             src="https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png"
             alt="Avatar"
+            className="border-[50%] h-60 w-60 cursor-pointer"
           />
         )}
 
@@ -48,29 +52,41 @@ const UserProfile = () => {
           handleSubmit,
           isSubmitting,
         }) => (
-          <form className="signup-react-form" onSubmit={handleSubmit}>
-            <div className="grid grid-two-column">
-              <div className="col">
-                <label htmlFor="name"> Name</label>
+          <form
+            className="signup-react-form py-0 px-24 text-[1.5rem] "
+            onSubmit={handleSubmit}
+          >
+            <div className="grid grid-cols-2 gap-16">
+              <div className="flex flex-col relative mb-3 ">
+                <label htmlFor="name" className="mb-2">
+                  {" "}
+                  Name
+                </label>
                 <input
                   name="fullname"
                   type="text"
                   onChange={handleChange}
                   value={values?.fullname}
                   disabled={disable}
+                  className=" text-gray-500 border-[1px] rounded-xl p-4 pl-8 outline-solid border-zinc-600 focus:border-0 "
                 ></input>
               </div>
-              <div className="col">
-                <label htmlFor="email"> Email </label>
+              <div className="flex flex-col relative mb-3 ">
+                <label htmlFor="email" className="mb-2">
+                  Email{" "}
+                </label>
                 <input
                   name="email"
                   type="email"
                   value={values?.email}
                   disabled
+                  className=" text-gray-500 border-[1px] rounded-xl p-4 pl-8 outline-solid border-zinc-600 focus:border-0 "
                 ></input>
               </div>
-              <div className="col">
-                <label htmlFor="phNo"> Contact No </label>
+              <div className="flex flex-col relative mb-3 ">
+                <label htmlFor="phNo" className="mb-2">
+                  Contact No{" "}
+                </label>
                 <input
                   name="contact"
                   type="text"
@@ -79,10 +95,14 @@ const UserProfile = () => {
                   onChange={handleChange}
                   value={values?.contact}
                   disabled={disable}
+                  className=" text-gray-500 border-[1px] rounded-xl p-4 pl-8 outline-solid border-zinc-600 focus:border-0 "
                 ></input>
               </div>
-              <div className="col">
-                <label htmlFor="gender"> Gender</label>
+              <div className="flex flex-col relative mb-3 ">
+                <label htmlFor="gender" className="mb-1">
+                  {" "}
+                  Gender
+                </label>
 
                 <select
                   name="gender"
@@ -90,13 +110,15 @@ const UserProfile = () => {
                   onChange={handleChange}
                   disabled={disable}
                   value={values?.gender}
+                  className=" text-gray-500  mt-4 rounded-[0.75rem] p-5 pl-8 outline-solid border-zinc-600 focus:border-0 "
                 >
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>
               </div>
             </div>
-            <div className="form-footer">
+
+            <div className="form-footer py-8 px-12 flex flex-row-reverse">
               {disable ? (
                 <Button
                   type="submit"
@@ -124,7 +146,7 @@ const UserProfile = () => {
           </form>
         )}
       </Formik>
-    </Wrapper>
+    </div>
   );
 };
 
@@ -132,12 +154,12 @@ export default UserProfile;
 
 const Wrapper = styled.section`
   font-size: 1.5rem;
-  img {
-    border-radius: 50%;
-    height: 15rem;
-    width: 15rem;
-    cursor: pointer;
-  }
+  // img {
+  //   border-radius: 50%;
+  //   height: 15rem;
+  //   width: 15rem;
+  //   cursor: pointer;
+  // }
 
   input {
     background: white;
